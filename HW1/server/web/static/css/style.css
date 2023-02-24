@@ -1,0 +1,82 @@
+/*
+     This document is created by Pouya Mohammadi 
+     for CC course at AUT - spring 2023.
+     I hope this content is useful to be inspired by
+     next gen. students
+     Feel free to learn from it.
+*/
+/* Base of my html style config */
+@font-face {
+    font-family: spaceG;
+    src: url(../font/SpaceGrotesk-Regular.ttf);
+  }
+
+:root{
+    --margin-out: 15px;
+    --margin-in: 2%;
+    --padding: 15px;
+    /* Using color palette hex of Dracula Theme */
+    --c1: #282a36; 
+    --c2: #44475a;
+    --c3: #f8f8f2;
+    --c4: #6272a4;
+    --c5: #50fa7b;
+    --c6: #ff79c6;
+    --c7: #bd93f9;
+}
+
+/* base of all elements */
+*{
+    box-sizing: border-box;
+    /* width: auto; */
+    /* border: solid var(--c2) 5px;
+    padding: 5px; */
+}
+body {
+    background-color: var(--c1);
+    font-family: sans-serif; /* Times New Roman*/
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: var(--c2);
+    overflow: hidden;
+}
+  
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: var(--c3);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: var(--c3);
+    color: var(--c2);
+}
+  
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: var(--c5);
+    color: var(--c1);
+}
+
+.home{
+    margin: var(--margin-in);
+}
+.home .header{
+    color: var(--c3);
+    text-align: center;
+}
+.home .header .headline{
+    font-size: 70px;
+    font-weight: bold;
+    font-family: spaceG;
+}
+.home .header .subheadline{
+    font-size: 20px;
+}
