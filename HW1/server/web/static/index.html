@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- adding CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- <style type="text/css" media="screen">
+
+    </style> -->
     <!-- adding title and favicon -->
     <link rel='shortcut icon' type='image/x-icon' href='./assets/fav.png' />
     <title>CodeR</title>
@@ -28,7 +31,7 @@
 
     <!-- TODO: Complete Home Body -->
     <div id="home" class="home">
-        <!-- header -->
+        <!-- topic - page header -->
         <div class="header">
             <div class="headline">
                 Code Runner
@@ -37,11 +40,61 @@
                 test your code and get results
             </div>
         </div>
+
+            <!-- code box title -->
+            <div class="title">
+                Fast cpp code box
+            </div>
+
+            <!-- code box cpp -->      
+        <div>
+        <!-- editor for code -->
+            <div class="editor" id="editor1">// C++ program to display "Hello World"
+// Header file for input output functions
+#include &lt;iostream&gt;
+using namespace std;
+    
+// Main() function: where the execution of program begins
+int main()
+{
+    // prints hello world
+    cout &lt;&lt; "Hello World";
+    
+    return 0;
+}           </div>
+        </div>
+                       
+
+            <!-- input box title -->
+            <div class="title" style="font-size: 20px;">
+                Put your app input here
+            </div>
+
+            <!-- input text box  -->
+            <div>
+                <!-- editor for text -->
+                <div class="editor" id="editor2" style="height: 200px;">example input 1
+example input 2</div>
+            </div>
+
+
     </div>
+
+
 
     <!-- TODO: Complete About Body -->
-    <div id="about">
 
-    </div>
+            <!-- This plugin is used for online code editor! -->
+    <script src="./ace-highlighter/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor1 = ace.edit("editor1");
+        editor1.setTheme("ace/theme/nord_dark");
+        editor1.session.setMode("ace/mode/c_cpp");
+
+        var editor2 = ace.edit("editor2");
+        editor2.setTheme("ace/theme/nord_dark");
+        editor2.session.setMode("ace/mode/text");
+
+    </script>
 </body>
 </html>
