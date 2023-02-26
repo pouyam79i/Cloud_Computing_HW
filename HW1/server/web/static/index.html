@@ -26,7 +26,7 @@
         <a class="active" href="#home">Home</a>
         <a href="#about">About</a>
         <!-- TODO: update this link to sign in page -->
-        <a href="#signin" style="float: right;">Sign In</a>
+        <a style="float: right;" onclick="location.href='#signin'">Sign In</a>
     </div>
 
     <!-- TODO: Complete Home Body -->
@@ -80,11 +80,36 @@ example input 2</div>
 
     </div>
 
+    <!-- Pop up - sign in page -->
+    <div id="signin" class="overlay">
+        <div class="popup">
+          <img
+            src="./assets/fav.png"
+            alt="react-book"/>
+            <h1>Welcome to CodeR </h1>
+            <form action="action_page.php" method="post" class="form">
+            <div class="container">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="uname" required>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <br>
+                <button type="submit">Sign In</button>
+                <button type="reset" onclick="location.href='#'">Close</button>
+            </div>
+        </form>
+
+        </h1>
+    </div>
+
 
 
     <!-- TODO: Complete About Body -->
+    
 
-            <!-- This plugin is used for online code editor! -->
+
+
+    <!-- This plugin is used for online code editor! -->
     <script src="./ace-highlighter/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor1 = ace.edit("editor1");
