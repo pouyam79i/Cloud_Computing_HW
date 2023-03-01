@@ -91,9 +91,18 @@ body {
     font-size: 70px;
     font-weight: bold;
     font-family: spaceG;
+    transition: all 500ms;
+}
+.home .header .headline:hover{
+    font-size: 80px;
 }
 .home .header .subheadline{
     font-size: 20px;
+    margin-bottom: 50px;
+    transition: all 500ms;
+}
+.home .header .subheadline:hover{
+    font-size: 25px;
 }
 
 
@@ -104,7 +113,27 @@ body {
     font-family: spaceG;
     text-align: center;
     margin: var(--margin-in);
+    transition: all 500ms;
 }
+
+.home .title:hover{
+    font-size: 35px;
+}
+
+.home .title2{
+    color: var(--c3);
+    font-size: 20px;
+    font-weight: bold;
+    font-family: spaceG;
+    text-align: center;
+    margin: var(--margin-in);
+    transition: all 500ms;
+}
+
+.home .title2:hover{
+    font-size: 25px;
+}
+
 
 .home .input_box textarea{
     background-color: var(--c2);

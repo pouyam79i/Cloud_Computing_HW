@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func BuildServer(debug bool) *echo.Echo {
@@ -15,5 +16,8 @@ func BuildServer(debug bool) *echo.Echo {
 		AttachMain(e)
 	}
 	fmt.Println("Done Building!")
+	// e.Use(middleware.Logger())
+	// e.Use(middleware.Recover())
+	e.Use(middleware.CORS())
 	return e
 }

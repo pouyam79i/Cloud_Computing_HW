@@ -10,9 +10,10 @@ import (
 // include everything for debugging
 func AttachALL(e *echo.Echo) {
 	e.GET("/hello", handler.HelloWorld)
+	e.POST("/signin", handler.SignIn)
 }
 
 // TODO: attacking your business' routes here
 func AttachMain(e *echo.Echo) {
-
+	e.POST("/signin", handler.SignIn)
 }

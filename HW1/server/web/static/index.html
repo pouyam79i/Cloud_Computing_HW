@@ -1,6 +1,6 @@
 <!--
      This document is created by Pouya Mohammadi 
-     for CC course at AUT - spring 2023.
+     for cloud computing course at AUT - spring 2023.
      I hope this content is useful to be inspired by
      next gen. students
      Feel free to learn from it.
@@ -13,8 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- adding CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <script src="./ace-highlighter/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/main.js" type="text/javascript" charset="utf-8"></script>
     <!-- <style type="text/css" media="screen">
-
     </style> -->
     <!-- adding title and favicon -->
     <link rel='shortcut icon' type='image/x-icon' href='./assets/fav.png' />
@@ -42,7 +43,7 @@
         </div>
 
             <!-- code box title -->
-            <div class="title">
+            <div class="title" onclick="importText('editor1', '.py,.cpp,.c,.go')">
                 Fast cpp code box
             </div>
 
@@ -66,7 +67,7 @@ int main()
                        
 
             <!-- input box title -->
-            <div class="title" style="font-size: 20px;">
+            <div class="title2" onclick="importText('editor2','.txt')">
                 Put your app input here
             </div>
 
@@ -80,6 +81,10 @@ example input 2</div>
 
     </div>
 
+
+    <!-- TODO: Complete About Body -->
+    
+
     <!-- Pop up - sign in page -->
     <div id="signin" class="overlay">
         <div class="popup">
@@ -87,38 +92,31 @@ example input 2</div>
             src="./assets/fav.png"
             alt="react-book"/>
             <h1>Welcome to CodeR </h1>
-            <form action="action_page.php" method="post" class="form">
+            <form action="" id="loginForm" class="form">
             <div class="container">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="uname" required>
+                <input type="text" placeholder="Enter Email" id="email" required>
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" placeholder="Enter Password" id="psw" required>
                 <br>
-                <button type="submit">Sign In</button>
+                <button type="submit" onclick="singInUP()">Sign In</button>
                 <button type="reset" onclick="location.href='#'">Close</button>
             </div>
-        </form>
-
+            </form>
         </h1>
     </div>
 
-
-
-    <!-- TODO: Complete About Body -->
-    
-
-
-
     <!-- This plugin is used for online code editor! -->
-    <script src="./ace-highlighter/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor1 = ace.edit("editor1");
         editor1.setTheme("ace/theme/nord_dark");
-        editor1.session.setMode("ace/mode/c_cpp");
+        editor1.session.setMode("ace/mode/golang");
 
         var editor2 = ace.edit("editor2");
         editor2.setTheme("ace/theme/nord_dark");
         editor2.session.setMode("ace/mode/text");
+
+    
 
     </script>
 </body>
