@@ -22,9 +22,7 @@ function displayItem(eID, text){
     document.getElementById(eID).innerText = `${text}`;
 }
 
-// TODO: complete login form action
 // login form action here:
-
 function singInUP() {
 
     console.log("Submit clicked")
@@ -59,6 +57,7 @@ function singInUP() {
     } 
 }
 
+// Data sender
 async function postSingInData(username, password){
     let response = await fetch("http://localhost:8085/signin", {
     method: 'POST',
@@ -74,7 +73,4 @@ async function postSingInData(username, password){
     }`,
     }).then(response=>response.json())
     .then(data=>{ console.log(data); });
-
-
-
 }

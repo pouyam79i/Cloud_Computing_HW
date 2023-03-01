@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+// This function build and config server for us
 func BuildServer(debug bool) *echo.Echo {
 	fmt.Println("Building Server ...")
 	e := echo.New()
