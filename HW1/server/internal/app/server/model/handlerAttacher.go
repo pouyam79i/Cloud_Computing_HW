@@ -11,9 +11,11 @@ import (
 func AttachALL(e *echo.Echo) {
 	e.GET("/hello", handler.HelloWorld)
 	e.POST("/signin", handler.SignIn)
+	e.POST("/codex", handler.UploadCode)
 }
 
 // TODO: attacking your business' routes here
 func AttachMain(e *echo.Echo) {
 	e.POST("/signin", handler.SignIn)
+	e.POST("/codex", handler.UploadCode)
 }

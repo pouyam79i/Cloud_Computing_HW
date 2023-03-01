@@ -1,2 +1,9 @@
 # Ignoreing go.sum for now!
 */go.sum
+
+# Ignore test files
+test
+*/test
+
+# Ignore make file for now!
+*/Makefile

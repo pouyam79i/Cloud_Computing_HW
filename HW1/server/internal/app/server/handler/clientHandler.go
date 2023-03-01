@@ -20,7 +20,7 @@ func SignIn(c echo.Context) error {
 	data := &config.SingInInfo{}
 	err := json.NewDecoder(c.Request().Body).Decode(&data)
 	if err != nil {
-		resErr := &config.ErrorData{
+		resErr := &config.ClientMSG{
 			Type: "Respond Parsing Error",
 			Info: "Error While Parsing Json File:\n" + err.Error(),
 		}
@@ -34,8 +34,8 @@ func SignIn(c echo.Context) error {
 	} else {
 		fmt.Println("Received Data", "\nEmail: ", data.Email, "\nPassword: ", data.Password)
 	}
-	resSuc := &config.SuccessMSG{
-		Code: http.StatusOK,
+	resSuc := &config.ClientMSG{
+		Type: "Data Received",
 		Info: "MSG received and parsed successfully!",
 	}
 	return c.JSON(http.StatusOK, resSuc)
