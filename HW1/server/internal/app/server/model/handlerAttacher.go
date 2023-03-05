@@ -12,6 +12,7 @@ func AttachALL(e *echo.Echo) {
 	e.GET("/hello", handler.HelloWorld)
 	e.POST("/signin", handler.SignIn)
 	e.POST("/codex", handler.UploadCode)
+	e.POST("/validate", handler.TestValidator)
 }
 
 // TODO: attacking your business' routes here

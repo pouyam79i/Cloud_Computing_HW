@@ -28,6 +28,15 @@ type ClientMSG struct {
 	Info   string `json:"info"`
 }
 
+type JustToken struct {
+	Token string `json:"token"`
+}
+
+type ValidatorResult struct {
+	Result bool   `json:"result"`
+	Info   string `json:"info"`
+}
+
 type CodexAPI struct {
 	Code     string `json:"code"`
 	Language string `json:"language"`

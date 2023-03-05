@@ -11,9 +11,7 @@ import (
 	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/config"
 )
 
-// his is a randomly generate hast
-// You should put same key as authx main key here!
-
+// Sing a user
 func Authx_SingIn(userInfo config.SingInInfo) (string, error) {
 
 	ui_str, err := json.Marshal(userInfo)
@@ -36,6 +34,7 @@ func Authx_SingIn(userInfo config.SingInInfo) (string, error) {
 
 	if err != nil {
 		fmt.Println("Failed to read respond from Authx. Reason:\n", err.Error())
+		return "", err
 	}
 
 	byteString, _ := io.ReadAll(res.Body)
@@ -57,5 +56,46 @@ func Authx_SingIn(userInfo config.SingInInfo) (string, error) {
 
 // Validate user token
 func Authx_Validate(token string) (bool, error) {
-	return false, nil
+
+	userInfo := config.JustToken{
+		Token: token,
+	}
+	ui_str, err := json.Marshal(userInfo)
+	if err != nil {
+		return false, errors.New("cannot marshal given json struct")
+	}
+
+	payload := bytes.NewBuffer(ui_str)
+	client := http.Client{}
+
+	req, err := http.NewRequest(http.MethodPost, config.API_AUTHX_VALIDATE+config.AUTHX_KEY, payload)
+	req.Header.Set("Content-Type", "application/json")
+
+	if err != nil {
+		fmt.Println("Failed to build req. reason:\n", err.Error())
+		return false, err
+	}
+
+	res, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Failed to read respond from Authx. Reason:\n", err.Error())
+		return false, err
+	}
+
+	byteString, _ := io.ReadAll(res.Body)
+
+	var r config.ValidatorResult
+	err = json.Unmarshal(byteString, &r)
+
+	if err != nil {
+		return false, errors.New("cannot Unmarshal given json string")
+	}
+
+	if r.Result {
+		return true, nil
+	} else {
+		return false, errors.New(r.Info)
+	}
+
 }

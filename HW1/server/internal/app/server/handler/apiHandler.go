@@ -15,7 +15,7 @@ func UploadCode(c echo.Context) error {
 	if err != nil {
 		res := config.ClientMSG{
 			Result: false,
-			Info: err.Error(),
+			Info:   err.Error(),
 		}
 		return c.JSON(http.StatusBadRequest, res)
 	}
@@ -24,7 +24,7 @@ func UploadCode(c echo.Context) error {
 	api.SendDataToJobBuilder(reqBody)
 	res := config.ClientMSG{
 		Result: true,
-		Info: "We are sending your code to codex api. Please be patient, the result of your code will be sent to your email",
+		Info:   "We are sending your code to codex api. Please be patient, the result of your code will be sent to your email",
 	}
 	return c.JSON(http.StatusOK, res)
 }
