@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/pouyam79i/Cloud_Computing_HW/internal/app/server/handler"
+	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/handler"
 )
 
 // TODO: add all routes to your echo server here

@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/pouyam79i/Cloud_Computing_HW/internal/app/server/config"
+	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/config"
 )
 
 func SendCodeX(data config.ClientCode) {

@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/pouyam79i/Cloud_Computing_HW/internal/app/server/config"
-	"github.com/pouyam79i/Cloud_Computing_HW/internal/app/server/model"
+	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/config"
+	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/model"
 )
 
 // TODO: complete server builder

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/pouyam79i/Cloud_Computing_HW/internal/app/server/cmd"
-	"github.com/pouyam79i/Cloud_Computing_HW/internal/app/server/config"
+	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/cmd"
+	"github.com/pouyam79i/Cloud_Computing_HW/server/internal/app/server/config"
 )
 
 func main() {
