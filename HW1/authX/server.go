@@ -25,6 +25,7 @@ func main() {
 
 	// attaching api handlers
 	e.POST("/signin", handler.SingIn)
+	e.POST("/validate", handler.ValidateToken)
 
 	// e.Use(middleware.Logger())
 	// e.Use(middleware.Recover())
