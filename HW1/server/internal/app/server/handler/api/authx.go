@@ -27,14 +27,14 @@ func Authx_SingIn(userInfo config.SingInInfo) (string, error) {
 
 	if err != nil {
 		fmt.Println("Failed to build req. reason:\n", err.Error())
-		return "", err
+		return "", errors.New("req building for authentication failed")
 	}
 
 	res, err := client.Do(req)
 
 	if err != nil {
 		fmt.Println("Failed to read respond from Authx. Reason:\n", err.Error())
-		return "", err
+		return "", errors.New("authentication failed")
 	}
 
 	byteString, _ := io.ReadAll(res.Body)
@@ -49,7 +49,7 @@ func Authx_SingIn(userInfo config.SingInInfo) (string, error) {
 	if r.Result {
 		return r.Token, nil
 	} else {
-		return "", errors.New(r.Info)
+		return "", errors.New("invalid token or server error")
 	}
 
 }
@@ -73,14 +73,14 @@ func Authx_Validate(token string) (bool, error) {
 
 	if err != nil {
 		fmt.Println("Failed to build req. reason:\n", err.Error())
-		return false, err
+		return false, errors.New("req building for authentication failed")
 	}
 
 	res, err := client.Do(req)
 
 	if err != nil {
 		fmt.Println("Failed to read respond from Authx. Reason:\n", err.Error())
-		return false, err
+		return false, errors.New("authentication failed")
 	}
 
 	byteString, _ := io.ReadAll(res.Body)
@@ -95,7 +95,7 @@ func Authx_Validate(token string) (bool, error) {
 	if r.Result {
 		return true, nil
 	} else {
-		return false, errors.New(r.Info)
+		return false, errors.New("invalid token or server error")
 	}
 
 }

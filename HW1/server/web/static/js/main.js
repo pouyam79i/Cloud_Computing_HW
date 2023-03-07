@@ -1,3 +1,8 @@
+// Update this when you receive a token
+myToken = null
+myEmail = null
+
+
 // Import files in html
 function importText(eID, type) {
     var data = null
@@ -48,29 +53,52 @@ function singInUP() {
             return
         }
         console.log("Email:", username, "Password:", password)
-        // TODO: post data to server
-        try{
-            postSingInData(username, password);
-        }catch(e){
-            console.log("Failed to Post Data!")
-        }
+        postSingInData(username, password);
+
     } 
 }
 
 // Data sender
 async function postSingInData(username, password){
-    let response = await fetch("http://localhost:8085/signin", {
-    method: 'POST',
-    headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin' : '*', 
-    'Access-Control-Allow-Credentials' : true 
-    },
-    body: `{
-    "email": "${username}",
-    "password": "${password}"
-    }`,
-    }).then(response=>response.json())
-    .then(data=>{ console.log(data); });
+    try{
+
+        let response = await fetch("http://localhost:8085/signin", {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin' : '*', 
+            'Access-Control-Allow-Credentials' : true 
+            },
+            body: `{
+            "email": "${username}",
+            "password": "${password}"
+            }`,
+            }).then(response=>response.json())
+            .then(data=>{ 
+                console.log(data.result);
+                console.log(data.token);
+                console.log(data.info);
+                if(data.result){
+                    // TODO: close sing page
+                    // TODO: disable signin btn and set a name email for it
+                    myEmail = username;
+                    myToken = data.token;
+                    document.getElementById("close_sing_in").click();
+                    singin_btn = document.getElementById("singin_btn");
+                    singin_btn.style.pointerEvents="none";
+                    singin_btn.innerText = username;
+                }else{
+                    alert(data.info)
+                    myToken = null
+                    myEmail = null
+                }
+            
+            });
+
+    }catch(e){
+        alert("Failed to Connect to Server")
+        console.log("Failed to post: reason: ", e)
+    }
+
 }
