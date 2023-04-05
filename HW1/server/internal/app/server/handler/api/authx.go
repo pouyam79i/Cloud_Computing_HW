@@ -57,6 +57,10 @@ func Authx_SingIn(userInfo config.SingInInfo) (string, error) {
 // Validate user token
 func Authx_Validate(token string) (bool, error) {
 
+	if token == "" {
+		return false, errors.New("No Token Given")
+	}
+
 	userInfo := config.JustToken{
 		Token: token,
 	}

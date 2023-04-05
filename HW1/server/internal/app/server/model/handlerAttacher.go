@@ -13,10 +13,11 @@ func AttachALL(e *echo.Echo) {
 	e.POST("/signin", handler.SignIn)
 	e.POST("/codex", handler.UploadCode)
 	e.POST("/validate", handler.TestValidator)
+	e.POST("/upload", handler.Upload)
 }
 
 // TODO: attacking your business' routes here
 func AttachMain(e *echo.Echo) {
 	e.POST("/signin", handler.SignIn)
-	e.POST("/codex", handler.UploadCode)
+	e.POST("/upload", handler.Upload)
 }

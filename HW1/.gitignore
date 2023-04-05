@@ -7,3 +7,7 @@ test
 
 # Ignore make file for now!
 */Makefile
+
+# Docs
+*.pdf
+*.docx

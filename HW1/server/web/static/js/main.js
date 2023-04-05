@@ -1,7 +1,8 @@
 // Update this when you receive a token
 myToken = null
 myEmail = null
-
+codeFile = null
+inputFile = null
 
 // Import files in html
 function importText(eID, type) {
@@ -13,11 +14,15 @@ function importText(eID, type) {
     input.onchange = _ => {
       // you can use this method to get file and perform respective operations
             var fr = new FileReader();
-            fr.onload=function(){
+            fr.onload=function(){  
                 displayItem(eID, fr.result);
             }
             fr.readAsText(input.files[0]);
-
+            if(eID=='editor1'){
+                codeFile = input.files[0];
+            }else if (eID =='editor2'){
+                inputFile = input.files[0];
+            }
         };
     input.click();
 }
@@ -68,7 +73,7 @@ async function postSingInData(username, password){
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*', 
-            'Access-Control-Allow-Credentials' : true 
+            'Access-Control-Allow-Credentials' : true
             },
             body: `{
             "email": "${username}",
@@ -80,14 +85,13 @@ async function postSingInData(username, password){
                 console.log(data.token);
                 console.log(data.info);
                 if(data.result){
-                    // TODO: close sing page
-                    // TODO: disable signin btn and set a name email for it
                     myEmail = username;
                     myToken = data.token;
                     document.getElementById("close_sing_in").click();
                     singin_btn = document.getElementById("singin_btn");
                     singin_btn.style.pointerEvents="none";
                     singin_btn.innerText = username;
+                    // TODO: add and enable sing out mechanism
                 }else{
                     alert(data.info)
                     myToken = null
@@ -100,5 +104,55 @@ async function postSingInData(username, password){
         alert("Failed to Connect to Server")
         console.log("Failed to post: reason: ", e)
     }
+
+}
+
+// Upload file mechanism
+function upload(){
+
+    if (myToken == null){
+        alert("Please sing in first!")
+        return;
+    }
+
+    if (codeFile == null || inputFile == null){
+        alert("Please import files properly!");
+        return;
+    }
+    // uploading files
+    crypto.randomUUID()
+    uploadFiles()
+}
+
+async function uploadFiles(){
+
+    if (myToken == null){
+        alert("Please sing in before uploading!");
+        return;
+    }
+
+    try{
+
+        const formData = new FormData();
+        formData.append("files", codeFile);
+        formData.append("files", inputFile);
+
+        let response = await fetch("http://localhost:8085/upload", {
+            method: 'POST',
+            headers: {
+            'Content-Type' : 'multipart/form-data',
+            'X-PM-TOKEN' : myToken
+            },
+            body: formData,
+            }).then(response=>response.json())
+            .then(data=>{ 
+                console.log(data)
+            });
+
+    }catch(e){
+        alert("Failed to Connect to Server")
+        console.log("Failed to post. reason: ", e)
+    }
+
 
 }
