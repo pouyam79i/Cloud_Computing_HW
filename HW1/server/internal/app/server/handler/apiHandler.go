@@ -167,5 +167,7 @@ func Upload(c echo.Context) error {
 		Info:   "Files Received Successfully",
 	}
 
+	// TODO: build a job and inform job builder
+
 	return c.JSON(http.StatusOK, res)
 }
