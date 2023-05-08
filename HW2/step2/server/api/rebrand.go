@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/config"
+	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/util"
 )
 
 // build and send a request to rebrandly, then return result
@@ -27,15 +28,20 @@ func CallRebrandlyAPI(url string) (string, error) {
 		return "", err
 	}
 
-	// TODO: remove hard coded url
-	req, err := http.NewRequest(http.MethodPost, config.RebrandlyURL, bytes.NewBuffer(byteBody))
+	// loading configs:
+	server_conf, err := util.GetConfigs()
+
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, server_conf.RebrandlyURL, bytes.NewBuffer(byteBody))
 	if err != nil {
 		return "", err
 	}
 
 	req.Header.Add("Content-Type", "application/json")
-	// TODO: remove hard coded api key
-	req.Header.Add("apikey", config.API_KEY)
+	req.Header.Add("apikey", server_conf.API_KEY)
 
 	client := &http.Client{}
 	res, err := client.Do(req)

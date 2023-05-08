@@ -2,9 +2,14 @@ package config
 
 // TODO: remove this hard code add it to env variable!
 const (
-	RebrandlyURL = "https://api.rebrandly.com/v1/links"
-	API_KEY = "f519a4c4afdc4512bcbb8d59bd5024fa"
+	Config_Path = "./config.yml"
 )
+
+// Server main configs to connect to rebrandly
+type Server struct {
+	RebrandlyURL string `yaml:"rebrandlyUrl"`
+	API_KEY      string `yaml:"apikey"`
+}
 
 // req for my server
 type RequestAPI struct {

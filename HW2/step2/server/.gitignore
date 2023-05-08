@@ -1,0 +1,3 @@
+# Ignore my personal costumizations
+*.sum
+config.yml
