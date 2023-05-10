@@ -10,6 +10,7 @@ type Server struct {
 	RebrandlyURL string `yaml:"rebrandlyUrl"`
 	API_KEY      string `yaml:"apikey"`
 	REDIS_ADDR   string `yaml:"redis"`
+	REDIS_TIME   int    `yaml:"redisTime"`
 }
 
 // req for my server

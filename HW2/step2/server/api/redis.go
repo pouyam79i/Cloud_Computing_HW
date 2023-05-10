@@ -62,7 +62,13 @@ func SendRedis(key, val string) error {
 	if err := client.Ping(); err.Err() != nil {
 		return errors.New("no redis client connection")
 	}
-	exp := time.Duration(300 * time.Second) // 5 minutes
+	var rt int = 0
+	conf, err := util.GetConfigs()
+	rt = conf.REDIS_TIME
+	if err != nil {
+		rt = 300
+	}
+	exp := time.Duration(time.Duration(rt) * time.Second) // 5 minutes is default
 	cmd := client.Set(key, val, exp)
 	return cmd.Err()
 }
