@@ -3,6 +3,7 @@ package util
 import (
 	"errors"
 	"io/ioutil"
+	"os"
 
 	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/config"
 	yaml "gopkg.in/yaml.v3"
@@ -10,7 +11,7 @@ import (
 
 var loadedConfigs *config.Server
 
-// TODO: Config loader. Must read config from yaml file or os inv!
+// Config loader. Must read config from yaml file or os inv!
 func loadAll() error {
 	configs := config.Server{}
 
@@ -22,6 +23,20 @@ func loadAll() error {
 	err = yaml.Unmarshal(yamlFile, &configs)
 	if err != nil {
 		return errors.New("failed to unmarshal yml file! reason: " + err.Error())
+	}
+
+	// Read os env vars if exists
+	redis_addr := os.Getenv("REDIS_ADDR")
+	if redis_addr != "" {
+		configs.REDIS_ADDR = redis_addr
+	}
+	api_key := os.Getenv("API_KEY")
+	if api_key != "" {
+		configs.API_KEY = api_key
+	}
+	rebrandlyUrl := os.Getenv("REBRANDLY_URL")
+	if rebrandlyUrl != "" {
+		configs.API_KEY = rebrandlyUrl
 	}
 
 	loadedConfigs = &configs
