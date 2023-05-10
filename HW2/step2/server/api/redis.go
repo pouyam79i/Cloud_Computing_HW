@@ -4,6 +4,7 @@ package api
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/go-redis/redis"
@@ -17,6 +18,7 @@ func initialConnectionToRedis() error {
 	if err != nil {
 		return err
 	}
+	fmt.Println("Creating redis client connection to: ", server_info.REDIS_ADDR)
 	client = redis.NewClient(&redis.Options{
 		Addr:     server_info.REDIS_ADDR,
 		Password: "",
@@ -36,7 +38,7 @@ func GetRedis(key string) (string, error) {
 	if client == nil {
 		return "", errors.New("nil redis client")
 	}
-	if err := client.Ping(); err != nil {
+	if err := client.Ping(); err.Err() != nil {
 		return "", errors.New("no redis client connection")
 	}
 	data := client.Get(key)
@@ -57,7 +59,7 @@ func SendRedis(key, val string) error {
 	if client == nil {
 		return errors.New("nil redis client")
 	}
-	if err := client.Ping(); err != nil {
+	if err := client.Ping(); err.Err() != nil {
 		return errors.New("no redis client connection")
 	}
 	exp := time.Duration(300 * time.Second) // 5 minutes
