@@ -5,6 +5,7 @@ package api
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/go-redis/redis"
@@ -64,7 +65,7 @@ func SendRedis(key, val string) error {
 	}
 	var rt int = 0
 	conf, err := util.GetConfigs()
-	rt = conf.REDIS_TIME
+	rt, err = strconv.Atoi(conf.REDIS_TIME)
 	if err != nil {
 		rt = 300
 	}

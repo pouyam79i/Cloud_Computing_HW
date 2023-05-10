@@ -4,7 +4,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"os"
-	"strconv"
 
 	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/config"
 	yaml "gopkg.in/yaml.v3"
@@ -40,13 +39,8 @@ func loadAll() error {
 		configs.API_KEY = rebrandlyUrl
 	}
 	redis_time := os.Getenv("REDIS_TIME")
-	if rebrandlyUrl != "" {
-		rt, err := strconv.Atoi(redis_time)
-		if err != nil {
-			configs.REDIS_TIME = 300 // 5 min is default
-		} else {
-			configs.REDIS_TIME = rt
-		}
+	if redis_time != "" {
+		configs.REDIS_TIME = redis_time
 	}
 
 	loadedConfigs = &configs
