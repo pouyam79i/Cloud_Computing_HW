@@ -9,6 +9,7 @@ const (
 type Server struct {
 	RebrandlyURL string `yaml:"rebrandlyUrl"`
 	API_KEY      string `yaml:"apikey"`
+	REDIS_ADDR   string `yaml:"redis"`
 }
 
 // req for my server
