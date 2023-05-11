@@ -16,16 +16,17 @@ spec:
     spec:
       containers:
         - name: my-server
-          image: cchw2server:1.7.3
+          image: cchw2server:2.1
+          imagePullPolicy: Never
           ports:
-            - containerPort: 8080
-              name: urlshortener
+            - containerPort: 8000
+              name: my-server
           resources:
             requests:
               memory: "64Mi"
               cpu: "250m"
             limits:
-              memory: "128Mi"
+              memory: "256Mi"
               cpu: "500m"
           env:
             - name: API_KEY

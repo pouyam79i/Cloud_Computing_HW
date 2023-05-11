@@ -15,15 +15,22 @@ spec:
         app: my-redis
     spec:
       containers:
-        - name: my-redis
-          image: redis
-          ports:
-            - containerPort: 6379
-              name: my-redis
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
+      - name: my-redis
+      image: redis
+      volumeMounts:
+      - name: redis-data
+      mountPath: /data
+      ports:
+      - containerPort: 6379
+      protocol: TCP
+      volumes:
+      - name: redis-data
+      persistentVolumeClaim:
+      claimName: conf-redis
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"

@@ -5,5 +5,5 @@ metadata:
 data:
   rebrandlyUrl: "https://api.rebrandly.com/v1/links"
   apikey: "f519a4c4afdc4512bcbb8d59bd5024fa"
-  redis: "172.18.0.2:6379"
+  redis: "my-redis:6379"
   redisTime: "300"
