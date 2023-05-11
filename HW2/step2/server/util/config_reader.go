@@ -36,12 +36,14 @@ func loadAll() error {
 	}
 	rebrandlyUrl := os.Getenv("REBRANDLY_URL")
 	if rebrandlyUrl != "" {
-		configs.API_KEY = rebrandlyUrl
+		configs.RebrandlyURL = rebrandlyUrl
 	}
 	redis_time := os.Getenv("REDIS_TIME")
 	if redis_time != "" {
 		configs.REDIS_TIME = redis_time
 	}
+
+	// Read from k8s configmap
 
 	loadedConfigs = &configs
 	return nil

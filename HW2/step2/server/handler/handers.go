@@ -9,6 +9,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/api"
 	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/config"
+	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/util"
 )
 
 // this is a test function
@@ -18,7 +19,15 @@ func HelloWorld(c echo.Context) error {
 	if err == nil {
 		hn = temp
 	}
-	return c.String(http.StatusOK, "Hello From Server: " + hn)
+	conf, err := util.GetConfigs()
+	var msg string = "Empty"
+	if err == nil {
+		msg = "Rebrandly Addr: " + conf.RebrandlyURL + "\n"
+		msg += "API KEY: " + conf.API_KEY + "\n"
+		msg += "REDIS TIME: " + conf.REDIS_TIME + "\n"
+		msg += "REDIS ADDR: " + conf.REDIS_ADDR + "\n"
+	}
+	return c.String(http.StatusOK, "Hello From Server: "+hn+"\n"+msg)
 }
 
 // Call on rebrandly api and return result
