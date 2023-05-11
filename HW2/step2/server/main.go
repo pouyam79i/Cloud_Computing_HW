@@ -12,10 +12,11 @@ import (
 func main() {
 	fmt.Println("Building Server...")
 	e := echo.New()
+	e.GET("/", handler.HelloWorld)
 	e.POST("/shorten", handler.CallRebrandly)
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORS())
 	fmt.Println("Running Server ...")
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(":8000"))
 }

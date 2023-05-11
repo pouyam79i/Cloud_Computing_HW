@@ -11,6 +11,16 @@ import (
 	"github.com/pouyam79i/Cloud_Computing_HW/main/HW2/step2/code/config"
 )
 
+// this is a test function
+func HelloWorld(c echo.Context) error {
+	var hn string = "Unknown"
+	temp, err := os.Hostname()
+	if err == nil {
+		hn = temp
+	}
+	return c.String(http.StatusOK, "Hello From Server: " + hn)
+}
+
 // Call on rebrandly api and return result
 // 1 - check if it exists in 'redis' and return if true.
 // 2 - else retrieve data from rebrandly.com, also save it in cache redis.
