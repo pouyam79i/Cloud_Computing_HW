@@ -1,0 +1,11 @@
+# Ignoring big data 
+dataset.csv
+
+# ingnoring docs
+docs/*
+*.docx
+*.pdf
+
+# ignoring zip or rar
+*.zip
+*.rar
